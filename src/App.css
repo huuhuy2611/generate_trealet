@@ -1,38 +1,91 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.generate-trealet {
+  width: 100vw;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.generate-trealet-left,
+.main-modal {
+  background: #ededed;
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.generate-trealet-left {
+  margin: 2% 5%;
+}
+
+.div-btn-download {
+  text-align: end;
+  margin-bottom: 16px;
+}
+
+.btn-add-new {
+  margin-right: 16px;
+}
+
+.add-form {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.input-item {
+}
+
+.input-item_title {
+  margin-bottom: 8px;
+}
+
+.icon-edit,
+.icon-delete {
+  padding: 8px;
+  border: 1px solid #989191;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.icon-edit:hover,
+.icon-delete:hover {
+  background: #1094a9;
   color: white;
+  border-color: #1094a9;
 }
 
-.App-link {
-  color: #61dafb;
+.show-long-text {
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* modal */
+
+.ant-modal-content {
+  border-radius: 12px !important;
+}
+
+.ant-modal-header {
+  border-radius: 12px 12px 0 0 !important;
+}
+
+.ant-modal-footer {
+  border-radius: 0 0 12px 12px !important;
+}
+
+.modal-title {
+  font-size: 26px;
+  color: #615d5d;
+}
+
+.modal-footer-custom {
+  padding: 8px;
+}
+
+.btn-cancel-modal {
+  background-color: #dedede !important;
+  color: #000 !important;
+  border-color: #dedede !important;
 }
