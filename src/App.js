@@ -1,6 +1,6 @@
 import "./App.css";
 import "antd/dist/antd.css";
-import { Button, Table, Space, Input, Modal } from "antd";
+import { Button, Table, Space, Input, Row } from "antd";
 import React, { useState } from "react";
 import {
   EditOutlined,
@@ -8,93 +8,95 @@ import {
   PlusOutlined,
   DownloadOutlined,
 } from "@ant-design/icons";
-import { v4 as uuidv4 } from "uuid";
+import ModalAddItem from "./ModalAddItem";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastSuccess } from "./ToastSuccess";
+
+const { TextArea } = Input;
 
 function App() {
-  const [dataSource, setDataSource] = useState([
+  const [dataHeader, setDataHeader] = useState({
+    id_logo: "",
+    title: "",
+  });
+  const [dataBanner, setDataBanner] = useState({
+    id_image: "",
+    title: "",
+    description: "",
+  });
+  const [dataItems, setDataItems] = useState([
     {
-      id: "43214234234",
-      id_image: 1249,
+      id: "14ef2115-7392-47e3128-a34b-9a09da20d042",
+      id_image: "19738",
       type: "Đồng",
-      size: "Đường kính miệng: 61cm; Đường kính đáy: 60cm; Chiều cao: 90cm",
+      size: "Chiều cao: 40cm; Chiều dài: 30cm; Chiều rộng: 27cm",
       age: "Văn hoá Đông Sơn, khoảng 2500 - 2000 năm cách ngày nay",
-      address: "Thôn Đào Thịnh, huyện Trấn Yên, tỉnh Yên Bái, năm 1961",
+      address: "Lạch Trường, Hoằng Hóa, Thanh Hóa, năm 1935",
       recognition:
         "Là Bảo vật quốc gia theo Quyết định số 1426/QĐ-TTg ngày 01/10/2012 của Thủ tướng Chính phủ.",
       link3d:
-        "https://media.sketchfab.com/models/93c8cf43b7fd421b8818ade273bb49a2/thumbnails/d7428e3c07d848b7b0d0b1f81f776394/3d4734fe96034c89bebd1340f0e6d4b9.jpeg",
+        "https://sketchfab.com/models/9ded08611e7e4e5b9be11f4a9098e2e5/embed",
     },
     {
-      id: "432142342341",
-      id_image: 1249,
+      id: "14ef2115-7392-47e8-a34b-9a0139da20d042",
+      id_image: "19738",
       type: "Đồng",
-      size: "Đường kính miệng: 61cm; Đường kính đáy: 60cm; Chiều cao: 90cm",
+      size: "Chiều cao: 40cm; Chiều dài: 30cm; Chiều rộng: 27cm",
       age: "Văn hoá Đông Sơn, khoảng 2500 - 2000 năm cách ngày nay",
-      address: "Thôn Đào Thịnh, huyện Trấn Yên, tỉnh Yên Bái, năm 1961",
+      address: "Lạch Trường, Hoằng Hóa, Thanh Hóa, năm 1935",
       recognition:
         "Là Bảo vật quốc gia theo Quyết định số 1426/QĐ-TTg ngày 01/10/2012 của Thủ tướng Chính phủ.",
       link3d:
-        "https://media.sketchfab.com/models/93c8cf43b7fd421b8818ade273bb49a2/thumbnails/d7428e3c07d848b7b0d0b1f81f776394/3d4734fe96034c89bebd1340f0e6d4b9.jpeg",
+        "https://sketchfab.com/models/9ded08611e7e4e5b9be11f4a9098e2e5/embed",
     },
     {
-      id: "4321423423411",
-      id_image: 1249,
+      id: "14ef2115-7392-47e8-a34b-9a31209da20d042",
+      id_image: "19738",
       type: "Đồng",
-      size: "Đường kính miệng: 61cm; Đường kính đáy: 60cm; Chiều cao: 90cm",
+      size: "Chiều cao: 40cm; Chiều dài: 30cm; Chiều rộng: 27cm",
       age: "Văn hoá Đông Sơn, khoảng 2500 - 2000 năm cách ngày nay",
-      address: "Thôn Đào Thịnh, huyện Trấn Yên, tỉnh Yên Bái, năm 1961",
+      address: "Lạch Trường, Hoằng Hóa, Thanh Hóa, năm 1935",
       recognition:
         "Là Bảo vật quốc gia theo Quyết định số 1426/QĐ-TTg ngày 01/10/2012 của Thủ tướng Chính phủ.",
       link3d:
-        "https://media.sketchfab.com/models/93c8cf43b7fd421b8818ade273bb49a2/thumbnails/d7428e3c07d848b7b0d0b1f81f776394/3d4734fe96034c89bebd1340f0e6d4b9.jpeg",
+        "https://sketchfab.com/models/9ded08611e7e4e5b9be11f4a9098e2e5/embed",
     },
     {
-      id: "43214234234111",
-      id_image: 1249,
+      id: "14ef2115-7392-47e8-a34b-9a09da20d0331242",
+      id_image: "19738",
       type: "Đồng",
-      size: "Đường kính miệng: 61cm; Đường kính đáy: 60cm; Chiều cao: 90cm",
+      size: "Chiều cao: 40cm; Chiều dài: 30cm; Chiều rộng: 27cm",
       age: "Văn hoá Đông Sơn, khoảng 2500 - 2000 năm cách ngày nay",
-      address: "Thôn Đào Thịnh, huyện Trấn Yên, tỉnh Yên Bái, năm 1961",
+      address: "Lạch Trường, Hoằng Hóa, Thanh Hóa, năm 1935",
       recognition:
         "Là Bảo vật quốc gia theo Quyết định số 1426/QĐ-TTg ngày 01/10/2012 của Thủ tướng Chính phủ.",
       link3d:
-        "https://media.sketchfab.com/models/93c8cf43b7fd421b8818ade273bb49a2/thumbnails/d7428e3c07d848b7b0d0b1f81f776394/3d4734fe96034c89bebd1340f0e6d4b9.jpeg",
+        "https://sketchfab.com/models/9ded08611e7e4e5b9be11f4a9098e2e5/embed",
     },
     {
-      id: "432142342342",
-      id_image: 1249,
+      id: "14ef2115-7392-47e8-a34b-9a09da20d041112",
+      id_image: "19738",
       type: "Đồng",
-      size: "Đường kính miệng: 61cm; Đường kính đáy: 60cm; Chiều cao: 90cm",
+      size: "Chiều cao: 40cm; Chiều dài: 30cm; Chiều rộng: 27cm",
       age: "Văn hoá Đông Sơn, khoảng 2500 - 2000 năm cách ngày nay",
-      address: "Thôn Đào Thịnh, huyện Trấn Yên, tỉnh Yên Bái, năm 1961",
+      address: "Lạch Trường, Hoằng Hóa, Thanh Hóa, năm 1935",
       recognition:
         "Là Bảo vật quốc gia theo Quyết định số 1426/QĐ-TTg ngày 01/10/2012 của Thủ tướng Chính phủ.",
       link3d:
-        "https://media.sketchfab.com/models/93c8cf43b7fd421b8818ade273bb49a2/thumbnails/d7428e3c07d848b7b0d0b1f81f776394/3d4734fe96034c89bebd1340f0e6d4b9.jpeg",
+        "https://sketchfab.com/models/9ded08611e7e4e5b9be11f4a9098e2e5/embed",
     },
     {
-      id: "4321423423422",
-      id_image: 1249,
+      id: "14ef2115-7392-47e8-a34b-9a09da20d0412",
+      id_image: "19738",
       type: "Đồng",
-      size: "Đường kính miệng: 61cm; Đường kính đáy: 60cm; Chiều cao: 90cm",
+      size: "Chiều cao: 40cm; Chiều dài: 30cm; Chiều rộng: 27cm",
       age: "Văn hoá Đông Sơn, khoảng 2500 - 2000 năm cách ngày nay",
-      address: "Thôn Đào Thịnh, huyện Trấn Yên, tỉnh Yên Bái, năm 1961",
+      address: "Lạch Trường, Hoằng Hóa, Thanh Hóa, năm 1935",
       recognition:
         "Là Bảo vật quốc gia theo Quyết định số 1426/QĐ-TTg ngày 01/10/2012 của Thủ tướng Chính phủ.",
       link3d:
-        "https://media.sketchfab.com/models/93c8cf43b7fd421b8818ade273bb49a2/thumbnails/d7428e3c07d848b7b0d0b1f81f776394/3d4734fe96034c89bebd1340f0e6d4b9.jpeg",
-    },
-    {
-      id: "43214234234222",
-      id_image: 1249,
-      type: "Đồng",
-      size: "Đường kính miệng: 61cm; Đường kính đáy: 60cm; Chiều cao: 90cm",
-      age: "Văn hoá Đông Sơn, khoảng 2500 - 2000 năm cách ngày nay",
-      address: "Thôn Đào Thịnh, huyện Trấn Yên, tỉnh Yên Bái, năm 1961",
-      recognition:
-        "Là Bảo vật quốc gia theo Quyết định số 1426/QĐ-TTg ngày 01/10/2012 của Thủ tướng Chính phủ.",
-      link3d:
-        "https://media.sketchfab.com/models/93c8cf43b7fd421b8818ade273bb49a2/thumbnails/d7428e3c07d848b7b0d0b1f81f776394/3d4734fe96034c89bebd1340f0e6d4b9.jpeg",
+        "https://sketchfab.com/models/9ded08611e7e4e5b9be11f4a9098e2e5/embed",
     },
   ]);
   const [item, setItem] = useState();
@@ -173,17 +175,23 @@ function App() {
   };
 
   const handleDeleteItem = record => {
-    const filterData = dataSource.filter(data => data.id !== record.id);
-    setDataSource(filterData);
-  };
-
-  const handleChangeInput = e => {
-    const { name, value } = e.target;
-    setItem(prev => ({ ...prev, [name]: value }));
+    const filterData = dataItems.filter(data => data.id !== record.id);
+    setDataItems(filterData);
+    ToastSuccess("Delete Item Successful!");
   };
 
   const handleShowModalAddItem = () => {
     setShowModalAdd(true);
+  };
+
+  const handleChangeInputHeader = e => {
+    const { name, value } = e.target;
+    setDataHeader(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleChangeInputBanner = e => {
+    const { name, value } = e.target;
+    setDataBanner(prev => ({ ...prev, [name]: value }));
   };
 
   const downloadTxtFile = () => {
@@ -192,7 +200,9 @@ function App() {
       [
         JSON.stringify({
           trealet: {
-            items: dataSource,
+            header: dataHeader,
+            banner: dataBanner,
+            items: dataItems,
           },
         }),
       ],
@@ -206,150 +216,107 @@ function App() {
     element.click();
   };
 
-  const handleSaveModal = () => {
-    if (item?.id) {
-      const tempDataSourceFilter = dataSource.filter(
-        data => data?.id !== item?.id
-      );
-      console.log(111, item, dataSource);
-      setDataSource([...tempDataSourceFilter, item]);
-      setItem({});
-      setShowModalAdd(false);
-      return;
-    }
-    if (item) {
-      const tempId = uuidv4();
-      setDataSource([...dataSource, { id: tempId, ...item }]);
-      setItem({});
-      setShowModalAdd(false);
-    }
-  };
-
-  const handleCancelModal = () => {
-    setShowModalAdd(false);
-  };
-
   return (
     <div className="generate-trealet">
+      <ToastContainer />
       <div className="generate-trealet-left">
-        <h1>List items</h1>
-        <div className="div-btn-download">
-          <Button
-            type="primary"
-            onClick={handleShowModalAddItem}
-            className="btn-add-new"
-          >
-            <PlusOutlined />
-            Add Item
-          </Button>
+        <Row>
+          <div style={{ marginBottom: "12px", width: "50%" }}>
+            <h1>Header</h1>
+            <div style={{ marginBottom: "12px" }}>
+              <p>Logo ID</p>
+              <Input
+                name="id_logo"
+                value={dataHeader?.id_logo}
+                onChange={handleChangeInputHeader}
+                style={{ width: "450px", maxWidth: "100%" }}
+                placeholder="Enter logo id..."
+              />
+            </div>
+            <div>
+              <p>Title Header</p>
+              <Input
+                name="title"
+                value={dataHeader?.title}
+                onChange={handleChangeInputHeader}
+                style={{ width: "450px", maxWidth: "100%" }}
+                placeholder="Enter title header..."
+              />
+            </div>
+          </div>
+          <div style={{ marginBottom: "12px", width: "50%" }}>
+            <h1>Banner</h1>
+            <div style={{ marginBottom: "12px" }}>
+              <p>Image Banner ID</p>
+              <Input
+                name="id_image"
+                value={dataBanner?.id_image}
+                onChange={handleChangeInputBanner}
+                style={{ width: "500px", maxWidth: "100%" }}
+                placeholder="Enter Image Banner id..."
+              />
+            </div>
+            <div style={{ marginBottom: "12px" }}>
+              <p>Title banner</p>
+              <Input
+                name="title"
+                value={dataBanner?.title}
+                onChange={handleChangeInputBanner}
+                style={{ width: "500px", maxWidth: "100%" }}
+                placeholder="Enter title..."
+              />
+            </div>
+            <div>
+              <p>Description</p>
+              <TextArea
+                name="description"
+                value={dataBanner?.description}
+                onChange={handleChangeInputBanner}
+                style={{ width: "500px", maxWidth: "100%" }}
+                placeholder="Enter description..."
+              />
+            </div>
+          </div>
+        </Row>
+
+        <div style={{ marginBottom: "12px" }}>
+          <Row justify="space-between" align="middle">
+            <h1>List items</h1>
+            <div className="div-btn-download">
+              <Button
+                type="primary"
+                onClick={handleShowModalAddItem}
+                className="btn-add-new"
+              >
+                <PlusOutlined />
+                Add Item
+              </Button>
+            </div>
+          </Row>
+
+          <Table
+            dataItems={dataItems}
+            columns={columns}
+            pagination={{ pageSize: 4 }}
+            scroll={{ y: 500 }}
+          />
+        </div>
+        <Row justify="center" align="middle">
           <Button type="primary" danger onClick={downloadTxtFile}>
             <DownloadOutlined />
             Download file
           </Button>
-        </div>
-
-        <Table
-          dataSource={dataSource}
-          columns={columns}
-          pagination={{ pageSize: 4 }}
-          scroll={{ y: 500 }}
-        />
+        </Row>
       </div>
 
       {showModalAdd && (
-        <Modal
-          centered
-          visible={showModalAdd}
-          width={1024}
-          title={
-            <span className="modal-title">
-              {item ? "Edit Item" : "Add New Item"}
-            </span>
-          }
-          onCancel={handleCancelModal}
-          footer={
-            <div className="modal-footer-custom">
-              <Button
-                type="primary"
-                onClick={handleCancelModal}
-                className="btn-cancel-modal"
-              >
-                Cancel
-              </Button>
-              <Button type="primary" onClick={handleSaveModal}>
-                Save
-              </Button>
-            </div>
-          }
-        >
-          <div className="main-modal">
-            <div className="add-form">
-              <div className="input-item">
-                <p className="input-item_title">Id Image</p>
-                <Input
-                  name="id_image"
-                  placeholder="Id Image"
-                  value={item?.id_image}
-                  onChange={handleChangeInput}
-                />
-              </div>
-              <div className="input-item">
-                <p className="input-item_title">Chất liệu</p>
-                <Input
-                  name="type"
-                  placeholder="Chất liệu"
-                  value={item?.type}
-                  onChange={handleChangeInput}
-                />
-              </div>
-              <div className="input-item">
-                <p className="input-item_title">Kích thước</p>
-                <Input
-                  name="size"
-                  placeholder="Kích thước"
-                  value={item?.size}
-                  onChange={handleChangeInput}
-                />
-              </div>
-              <div className="input-item">
-                <p className="input-item_title">Niên đại</p>
-                <Input
-                  name="age"
-                  placeholder="Niên đại"
-                  value={item?.age}
-                  onChange={handleChangeInput}
-                />
-              </div>
-              <div className="input-item">
-                <p className="input-item_title">Nơi phát hiện</p>
-                <Input
-                  name="address"
-                  placeholder="Nơi phát hiện"
-                  value={item?.address}
-                  onChange={handleChangeInput}
-                />
-              </div>
-              <div className="input-item">
-                <p className="input-item_title">Công nhận</p>
-                <Input
-                  name="recognition"
-                  placeholder="Công nhận"
-                  value={item?.recognition}
-                  onChange={handleChangeInput}
-                />
-              </div>
-              <div className="input-item">
-                <p className="input-item_title">Link 3D</p>
-                <Input
-                  name="link3d"
-                  placeholder="Link 3D"
-                  value={item?.link3d}
-                  onChange={handleChangeInput}
-                />
-              </div>
-            </div>
-          </div>
-        </Modal>
+        <ModalAddItem
+          setShowModalAdd={setShowModalAdd}
+          item={item}
+          setItem={setItem}
+          dataItems={dataItems}
+          setDataItems={setDataItems}
+        />
       )}
     </div>
   );
