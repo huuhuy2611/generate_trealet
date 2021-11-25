@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Input, Modal } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import { ToastSuccess } from "./ToastSuccess";
+import TextEditor from "./Editor";
 
 function ModalAddItem(props) {
   const { item, setItem, setShowModalAdd, dataItems, setDataItems } = props;
@@ -19,7 +20,7 @@ function ModalAddItem(props) {
       setDataItems([...tempdataItemsFilter, item]);
       setItem({});
       setShowModalAdd(false);
-      ToastSuccess("Update Item Successful!");
+      ToastSuccess("Cập nhật thành công!");
       return;
     }
     if (item) {
@@ -27,7 +28,7 @@ function ModalAddItem(props) {
       setDataItems([...dataItems, { id: tempId, ...item }]);
       setItem({});
       setShowModalAdd(false);
-      ToastSuccess("Create Item Successful!");
+      ToastSuccess("Tạo thành công!");
     }
   };
 
@@ -42,7 +43,7 @@ function ModalAddItem(props) {
       width={1024}
       title={
         <span className="modal-title">
-          {item ? "Edit Item" : "Add New Item"}
+          {item ? "Sửa nội dung" : "Thêm nội dung"}
         </span>
       }
       onCancel={handleCancelModal}
@@ -53,10 +54,10 @@ function ModalAddItem(props) {
             onClick={handleCancelModal}
             className="btn-cancel-modal"
           >
-            Cancel
+            Huỷ bỏ
           </Button>
           <Button type="primary" onClick={handleSaveModal}>
-            Save
+            Lưu
           </Button>
         </div>
       }
@@ -64,7 +65,7 @@ function ModalAddItem(props) {
       <div className="main-modal">
         <div className="add-form">
           <div className="input-item">
-            <p className="input-item_title">Id Image</p>
+            <p className="input-item_title">ID Ảnh</p>
             <Input
               name="id_image"
               placeholder="Id Image"
@@ -73,57 +74,21 @@ function ModalAddItem(props) {
             />
           </div>
           <div className="input-item">
-            <p className="input-item_title">Chất liệu</p>
-            <Input
-              name="type"
-              placeholder="Chất liệu"
-              value={item?.type}
-              onChange={handleChangeInput}
-            />
-          </div>
-          <div className="input-item">
-            <p className="input-item_title">Kích thước</p>
-            <Input
-              name="size"
-              placeholder="Kích thước"
-              value={item?.size}
-              onChange={handleChangeInput}
-            />
-          </div>
-          <div className="input-item">
-            <p className="input-item_title">Niên đại</p>
-            <Input
-              name="age"
-              placeholder="Niên đại"
-              value={item?.age}
-              onChange={handleChangeInput}
-            />
-          </div>
-          <div className="input-item">
-            <p className="input-item_title">Nơi phát hiện</p>
-            <Input
-              name="address"
-              placeholder="Nơi phát hiện"
-              value={item?.address}
-              onChange={handleChangeInput}
-            />
-          </div>
-          <div className="input-item">
-            <p className="input-item_title">Công nhận</p>
-            <Input
-              name="recognition"
-              placeholder="Công nhận"
-              value={item?.recognition}
-              onChange={handleChangeInput}
-            />
-          </div>
-          <div className="input-item">
-            <p className="input-item_title">Link 3D</p>
+            <p className="input-item_title">Link 3D, Video (Nếu có)</p>
             <Input
               name="link3d"
               placeholder="Link 3D"
               value={item?.link3d}
               onChange={handleChangeInput}
+            />
+          </div>
+          <div className="input-item">
+            <p className="input-item_title">Mô tả nội dung</p>
+            <TextEditor
+              value={item?.description}
+              setValue={value => {
+                setItem(prev => ({ ...prev, description: value }));
+              }}
             />
           </div>
         </div>
