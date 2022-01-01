@@ -7,15 +7,15 @@ import TextEditor from "./Editor";
 function ModalAddItem(props) {
   const { item, setItem, setShowModalAdd, dataItems, setDataItems } = props;
 
-  const handleChangeInput = e => {
+  const handleChangeInput = (e) => {
     const { name, value } = e.target;
-    setItem(prev => ({ ...prev, [name]: value }));
+    setItem((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSaveModal = () => {
     if (item?.id) {
       const tempdataItemsFilter = dataItems.filter(
-        data => data?.id !== item?.id
+        (data) => data?.id !== item?.id
       );
       setDataItems([...tempdataItemsFilter, item]);
       setItem({});
@@ -68,8 +68,17 @@ function ModalAddItem(props) {
             <p className="input-item_title">ID Ảnh</p>
             <Input
               name="id_image"
-              placeholder="Id Image"
+              placeholder="ID ảnh"
               value={item?.id_image}
+              onChange={handleChangeInput}
+            />
+          </div>
+          <div className="input-item">
+            <p className="input-item_title">Tiêu đề Video, 3D (Nếu có)</p>
+            <Input
+              name="titleVideo"
+              placeholder="Link 3D"
+              value={item?.titleVideo}
               onChange={handleChangeInput}
             />
           </div>
@@ -86,8 +95,8 @@ function ModalAddItem(props) {
             <p className="input-item_title">Mô tả nội dung</p>
             <TextEditor
               value={item?.description}
-              setValue={value => {
-                setItem(prev => ({ ...prev, description: value }));
+              setValue={(value) => {
+                setItem((prev) => ({ ...prev, description: value }));
               }}
             />
           </div>

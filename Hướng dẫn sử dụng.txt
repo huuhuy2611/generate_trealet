@@ -1,0 +1,8 @@
+- Yêu câu phần mềm: 
+	+ Tải NodeJS tại: https://nodejs.dev/
+- Cách chạy ứng dụng:
+	+ Sau khi tải NodeJS và cài biến môi trường trên máy 
+		=> giải nén Folder 
+		=> chạy npm install
+		=> Sau đó chạy npm start
+		=> truy cập vào localhost:3000 để sử dụng hệ thống

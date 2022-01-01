@@ -1,0 +1,68 @@
+.create-icon {
+  background: #42b9e0;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 12px auto;
+}
+
+.create-icon:hover {
+  background: #46a5c5;
+}
+
+.form-item-create-div {
+  display: flex;
+}
+
+.form-item-create .ant-form-item-label {
+  width: fit-content;
+  text-align: left;
+}
+
+.form-item-create-question .ant-form-item-label label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.answer-title {
+  font-size: 17px;
+  width: fit-content;
+  margin-right: 12px;
+}
+
+.form-item-create-answer-item {
+  width: 50%;
+}
+
+.form-item-create-answer-item .ant-form-item-label {
+  width: fit-content;
+  text-align: left;
+}
+
+.form-item-create-answer-item input {
+  width: 90%;
+}
+
+.create-form {
+  margin: 0;
+  padding: 24px 24px 2px 24px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.list-step-quest {
+  display: flex;
+  flex-direction: column;
+}
+
+.quest {
+  margin: 12px 0;
+  width: fit-content;
+  min-width: 30%;
+}
+
+.font-16 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}

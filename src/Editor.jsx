@@ -21,7 +21,7 @@ function TextEditor(props) {
   };
 
   return (
-    <>
+    <div className="custom-editor">
       <Editor
         editorState={editorState}
         toolbarClassName="toolbarClassName"
@@ -30,8 +30,19 @@ function TextEditor(props) {
         onBlur={handleBlurEditor}
         onEditorStateChange={setEditorState}
         placeholder="Nhập mô tả nội dung..."
+        toolbar={{
+          options: [
+            "inline",
+            "blockType",
+            "fontSize",
+            "fontFamily",
+            "list",
+            "textAlign",
+            "colorPicker",
+          ],
+        }}
       />
-    </>
+    </div>
   );
 }
 

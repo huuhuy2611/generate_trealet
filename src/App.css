@@ -9,7 +9,7 @@
 .generate-trealet-left,
 .main-modal {
   background: #ededed;
-  padding: 16px;
+  padding: 24px;
   border-radius: 6px;
 }
 
@@ -26,13 +26,31 @@
   /* margin-right: 16px; */
 }
 
+.download button {
+  width: 60%;
+  height: 50px;
+}
+
 .add-form {
   background: #fff;
   padding: 16px;
   border-radius: 8px;
 }
 
+.title-show-off,
+.title-step-quest {
+  width: 100%;
+  height: 100px;
+  background: #dcdcdc;
+  font-size: 40px;
+  font-weight: 600;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
 .input-item {
+  margin-bottom: 8px;
 }
 
 .input-item_title {
@@ -101,4 +119,11 @@
 
 p {
   margin-bottom: 0.6em !important;
+}
+
+/* STEP QUEST */
+.step-quest {
+  margin: 2% 5%;
+  padding: 24px;
+  background: #ededed;
 }
